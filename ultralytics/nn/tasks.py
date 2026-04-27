@@ -86,55 +86,13 @@ from ultralytics.utils.torch_utils import (
     time_sync,
 )
 
-from .Extro.RFAConv import RFAConv
-from .Extro.DOConv import DOConv2d
-from .Extro.EUCB import EUCB
-from .Extro.FEMG import FEM_Optimized
-from .Extro.FEMS import FEM_SmallObject
-from .Extro.FEMCAA import FEMCAA
-from .Extro.CAA import C2PSA_CAA
-from .Extro.FEM import FEM
-from .Extro.AKConv import C3k2_AKConv
-from .Extro.SAConv import SAConv2d
-from .Extro.wtconv2d import WTConv2d
-from .Extro.ASFFHead import Detect_ASFF
-from .Extro.ASFM import SAFMNPP
-from .Extro.SC import SC
-from .Extro.Detect_Head import RemoteSensingDetectHead
-from .Extro.MSC import MSCAAttention
-from .Extro.AKConvS import AKConvLite, C3k2_AKConvLite
-from .Extro.AKARConv import AKARConv
-from .Extro.IDC import InceptionDWConv2d, C3k2_IDC
-from .Extro.ConvMod import C2f_ConvMod, ConvMod
-from .Extro.DCConvSE import AttentionModule
-from .Extro.MSCAA import MSCAAttention
-from .Extro.PConv import PConv
-from .Extro.ODConv import ODConv
-from .Extro.ODConvS import ODConv2d
-from .Extro.TAB import TAB
-from .Extro.LDConv import LDConv
-from .Extro.ASFFHead_v11 import v11Detect_ASFFHead
-from .Extro.RFODConv import RFAODConv_v2
-from .Extro.RFAConvS import RFAConvS
-from .Extro.ARConvS import ARConv
-from .Extro.LEGM import LEGM
-from .Extro.SimAM import SimAM
-from .Extro.FFM import FFM
-from .Extro.GSConv import GSConv
-from .Extro.SPDConv import SPDConv
-from .Extro.SFSConv import SFSConv
-from .Extro.RFDConv import EnhancedDynamicConv
-from .Extro.CAASO import C2PSA_CAA_SmallObj
 
-from .Attention.CBAM import CBAM
-from .Attention.CA import CoordAtt
-from .Attention.ECA import ECA
-from .Attention.CBAME import CBAME
-from .Attention.GAM import GAM_Attention
-from .Attention.CAA import CAA
-from .Attention.SHSA import SHSA
-from .Attention.PPA import PPA
-from .Attention.PPAS import PPAS
+
+from .Extro.FEMCAA import FEMCAA
+from .Extro.FEM import FEM
+from .Extro.LDConv import LDConv
+from .Extro.CAA import CAA
+
 
 try:
     import thop
@@ -1041,15 +999,7 @@ def parse_model(d, ch, verbose=True):  # model_dict, input_channels(3)
             WTConv2d,
             SAFMNPP,
             SC,
-            RemoteSensingDetectHead,
-            MSCAAttention, SFSConv, RFAConvS, ARConv, AKConvLite, C3k2_AKConvLite, AKARConv, ODConv2d, RFAODConv_v2,
-            InceptionDWConv2d, C3k2_IDC, CBAME, PPA, PPAS,
-            AttentionModule,
-            C3k2_AKConv, PConv,
-            ODConv, RFAConv,
-            EUCB, DOConv2d,
-            TAB, ConvMod, LDConv, FEM_Optimized, SimAM,
-            GSConv, SPDConv, EnhancedDynamicConv, C2PSA_CAA_SmallObj, FEM_SmallObject, FEMCAA, C2PSA_CAA,
+            RemoteSensingDetectHead, FEM_Optimized, FEM_SmallObject, FEMCAA,
         }
     )
     repeat_modules = frozenset(  # modules with 'repeat' arguments
@@ -1069,9 +1019,6 @@ def parse_model(d, ch, verbose=True):  # model_dict, input_channels(3)
             C2fCIB,
             C2PSA,
             A2C2f,
-            InceptionDWConv2d, C3k2_IDC,
-            C2f_ConvMod, CAA
-
         }
     )
     for i, (f, n, m, args) in enumerate(d["backbone"] + d["head"]):  # from, number, module, args
